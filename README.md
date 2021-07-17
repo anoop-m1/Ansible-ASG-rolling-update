@@ -25,8 +25,28 @@
 - [pause](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pause_module.html)
 ---
 
+# CODE FLOW:
 
-ansible-playbook main.yml
+######    - name: "KeyPair Creation"
+######    - name: "KeyPair_saving"
+######    - name: "Creating Secutiry Group"
+######    - name: "Creating Launch configuration"
+######    - name: "Creating ELB"
+######    - name: "Autoscaling-Group Creation"
+######    - name: "Fetching Ec2 Instance Details"
+######    - name: "Creating Dymaic Inventory"
+######    - name: "Website From GitHub"
+######    - name: "Installing Packages"
+######    - name: "Cloning Repository from Git"
+######    - name: "Disbaling ELB Health Check"
+######    - name: "Off loading Ec2-Instance From ELB"
+######    - name: "Copying New Content To documentRoot"
+######    - name: "Restarting/enabling Application"
+######    - name: "Enabling ELB Health Check"
+######    - name: "Loading Ec2-Instance to ELB"
+
+
+# ansible-playbook main.yml
 ```
 ---
 - name: "Creating Aws Infrastructure"
@@ -34,7 +54,7 @@ ansible-playbook main.yml
   connection: local
   vars_files:
      - new.vars
-     - cred.vars
+     - credentials.vars
 
   tasks:
 
