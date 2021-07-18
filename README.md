@@ -49,12 +49,13 @@
 # ansible-playbook main.yml
 ```
 ---
+---
 - name: "Creating Aws Infrastructure"
   hosts: localhost
   connection: local
   vars_files:
      - new.vars
-     - credentials.vars
+     - cred.vars
 
   tasks:
 
@@ -159,6 +160,7 @@
         aws_secret_key: "{{ secret_key }}"
         region: "{{ region }}"
         name: "devops_asg"
+        load_balancers: "elb"
         launch_config_name: "newlaunch_lc"
         health_check_period: 30
         health_check_type: EC2
@@ -196,23 +198,13 @@
         ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
       with_items:
         - "{{ ec2.instances }}"
-
-- name: "Website From GitHub"
+- name: "ASG Rolling Update Start"
   hosts: instances
   become: true
   serial: 1
   vars_files:
     - new.vars
   tasks:
-
-    - name: "Installing Packages"
-      yum:
-        name:
-          - httpd
-          - php
-          - git
-        state: present
-
 
     - name: "Cloning Repository from Git"
       git:
@@ -259,6 +251,7 @@
       when: repo_status.changed == true
       pause:
         seconds: "{{ health_time }}"
+
 
 ---
 
