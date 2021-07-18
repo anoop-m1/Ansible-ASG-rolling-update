@@ -35,8 +35,6 @@
 ######    - name: "Autoscaling-Group Creation"
 ######    - name: "Fetching Ec2 Instance Details"
 ######    - name: "Creating Dymaic Inventory"
-######    - name: "Website From GitHub"
-######    - name: "Installing Packages"
 ######    - name: "Cloning Repository from Git"
 ######    - name: "Disbaling ELB Health Check"
 ######    - name: "Off loading Ec2-Instance From ELB"
